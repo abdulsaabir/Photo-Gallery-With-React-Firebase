@@ -7,13 +7,24 @@ const UploadPhote = () => {
   const allowedTypes = ["image/png", "image/jpeg"];
   function handleChange(e) {
     let selected = e.target.files[0];
-    if (selected && allowedTypes.includes(selected.type)) setFile(selected);
-    else
-      setFile(null), console.log("please select an image file (png or jpeg)");
+    if (selected && allowedTypes.includes(selected.type)) {
+      setFile(selected);
+      setError(null);
+    } else {
+      setFile(null);
+      setError("please select an image file (png or jpeg)");
+    }
   }
   return (
     <form>
-      <input type="file" onChange={handleChange} />
+      <label>
+        <input type="file" onChange={handleChange} />
+        <span>+</span>
+      </label>
+      <div className="outPut">
+        {Error && <div className="error">{Error}</div>}
+        {File && <div className="File">{File.name}</div>}
+      </div>
       <img src={File} alt="" />
     </form>
   );
