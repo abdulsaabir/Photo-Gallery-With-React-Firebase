@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 
 const UploadPhote = () => {
-  const [File, setFile] = useState(null);
+  const [file, setFile] = useState(null);
   const [Error, setError] = useState(null);
   const allowedTypes = ["image/png", "image/jpeg"];
   function handleChange(e) {
@@ -23,9 +23,8 @@ const UploadPhote = () => {
       </label>
       <div className="outPut">
         {Error && <div className="error">{Error}</div>}
-        {File && <div className="File">{File.name}</div>}
+        {File && <div className="File">{file.name}</div>}
       </div>
-      <img src={File} alt="" />
     </form>
   );
 };
