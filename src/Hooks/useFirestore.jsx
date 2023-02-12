@@ -1,24 +1,25 @@
-// import React, { useEffect, useState } from "react";
-// import { projectFireStore } from "../firebase/config";
-// import { collection, getDocs } from "firebase/firestore";
+import { useState, useEffect } from "react";
+import { projectFireStore } from "../firebase/config";
 
-const UseFirestore = () => {
-  //   const [ImagesList, setImages] = useState([]);
-  //   let images = collection(projectFireStore, "images");
-  //   async function getDocsfunc() {
-  //     let snapshot = await getDocs(images);
-  //     return snapshot;
-  //   }
-  //   useEffect(() => {
-  //     async function getData() {
-  //       let data = await getDocsfunc();
-  //       data.forEach((element) => {
-  //         // setImages((el) => [...el, element.data()]);
-  //       });
-  //     }
-  //     getData();
-  //   }, [images]);
-  //   return ImagesList;
+const useFirestore = (collection) => {
+  const [docs, setDocs] = useState([]);
+
+  useEffect(() => {
+    const unsub = projectFireStore
+      .collection(collection)
+      .orderBy("createdAt", "desc")
+      .onSnapshot((snap) => {
+        let documents = [];
+        snap.forEach((doc) => {
+          documents.push({ ...doc.data(), id: doc.id });
+        });
+        setDocs(documents);
+      });
+
+    return () => unsub();
+  }, [collection]);
+
+  return { docs };
 };
 
-export default UseFirestore;
+export default useFirestore;

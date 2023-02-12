@@ -1,5 +1,6 @@
 import { ProjectStorage, projectFireStore } from "../firebase/config";
 import { useState, useEffect } from "react";
+import UseFirestore from "./useFirestore";
 const useStorage = (file) => {
   const [progress, setprogress] = useState(0);
   const [error, seterror] = useState(null);
@@ -19,7 +20,7 @@ const useStorage = (file) => {
       },
       async () => {
         const url = await StorageRef.getDownloadURL();
-        const createdAt = new Date().toISOString().split("T")[0];
+        const createdAt = new Date().toISOString();
         collectionRef.add({ url, createdAt });
         seturl(url);
       }
