@@ -1,6 +1,5 @@
 import { ProjectStorage, projectFireStore } from "../firebase/config";
 import { useState, useEffect } from "react";
-import UseFirestore from "./useFirestore";
 const useStorage = (file) => {
   const [progress, setprogress] = useState(0);
   const [error, seterror] = useState(null);
