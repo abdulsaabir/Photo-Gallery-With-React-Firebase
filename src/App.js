@@ -10,7 +10,6 @@ function App() {
       <Title />
       <UploadPhote />
       <ImagesGrid />
-      <UseFirestore />
     </div>
   );
 }

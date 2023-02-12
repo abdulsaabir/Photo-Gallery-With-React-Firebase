@@ -1,7 +1,10 @@
 import React from "react";
+import UseFirestore from "../Hooks/useFirestore";
 
 const ImagesGrid = () => {
-  return <div className="img-grid">ImagesGrid</div>;
+  const data = UseFirestore();
+  console.log(data);
+  return <div className="img-grid"></div>;
 };
 
 export default ImagesGrid;
