@@ -27,5 +27,6 @@ const analytics = getAnalytics(app);
 
 const ProjectStorage = firebase.storage();
 const projectFireStore = firebase.firestore();
+const timeStamp = firebase.firestore.FieldValue.serverTimestamp;
 
-export { ProjectStorage, projectFireStore };
+export { ProjectStorage, projectFireStore, timeStamp };
